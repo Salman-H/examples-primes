@@ -5,7 +5,8 @@ public class PrintPrimes {
 
   int ORDMAX;
   int listOfPrimes[];
-
+ 
+  
   public PrintPrimes(int numberOfPrimes, int rows, int columns , int ORDMAX) {
     this.numberOfPrimes   = numberOfPrimes;
     this.rows  = rows;
@@ -38,20 +39,20 @@ public class PrintPrimes {
       int multiples[] = new int[ORDMAX + 1];
 
       int currentOddNumber = 1;
-      int ORD = 2;
+      int index = 2;
       int SQUARE = 9;
 
       for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
         do {
           currentOddNumber = currentOddNumber + 2;
           if (currentOddNumber == SQUARE) {
-            ORD = ORD + 1;
-            SQUARE = listOfPrimes[ORD] * listOfPrimes[ORD];
-            multiples[ORD - 1] = currentOddNumber;
+            index= index+ 1;
+            SQUARE = listOfPrimes[index] * listOfPrimes[index];
+            multiples[index- 1] = currentOddNumber;
           }
           N = 2;
           isPrime = true;
-          while (N < ORD && isPrime) {
+          while (N < index&& isPrime) {
             while (multiples[N] < currentOddNumber)
               multiples[N] = multiples[N] + listOfPrimes[N] + listOfPrimes[N];
             if (multiples[N] == currentOddNumber)
