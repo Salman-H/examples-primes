@@ -40,14 +40,14 @@ public class PrintPrimes {
 
       int currentOddNumber = 1;
       int index = 2;
-      int SQUARE = 9;
+      int square = 9;
 
       for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
         do {
           currentOddNumber = currentOddNumber + 2;
-          if (currentOddNumber == SQUARE) {
+          if (currentOddNumber == square) {
             index= index+ 1;
-            SQUARE = listOfPrimes[index] * listOfPrimes[index];
+            square = listOfPrimes[index] * listOfPrimes[index];
             multiples[index- 1] = currentOddNumber;
           }
          
