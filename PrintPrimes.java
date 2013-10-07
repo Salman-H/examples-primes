@@ -2,17 +2,15 @@ public class PrintPrimes {
   int numberOfPrimes;
   int rows;
   int columns;
-
-  int ORDMAX;
+  int ordMax;
   int listOfPrimes[];
  
   
-  public PrintPrimes(int numberOfPrimes, int rows, int columns , int ORDMAX) {
-    this.numberOfPrimes   = numberOfPrimes;
-    this.rows  = rows;
-    this.columns   = columns ;
-    
-    this.ORDMAX = ORDMAX;
+  public PrintPrimes(int numberOfPrimes, int rows, int columns , int ordMax) {
+    this.numberOfPrimes = numberOfPrimes;
+    this.rows = rows;
+    this.columns = columns ;
+    this.ordMax = ordMax;
     this.listOfPrimes = new int[numberOfPrimes + 1];
   }
 
@@ -23,6 +21,7 @@ public class PrintPrimes {
       printPrimes.printPrimes();
   }
 
+  
   public void calculatePrimes() {
       /* Two is the only even prime. All other prime numbers are odd.
        * To simplify the code, we simply add 2 as a prime number, and
@@ -33,11 +32,10 @@ public class PrintPrimes {
       calculateOddPrimes();
   }
 
+  
   private void calculateOddPrimes() {
       boolean isPrime;
-     
-      int multiples[] = new int[ORDMAX + 1];
-
+      int multiples[] = new int[ordMax + 1];
       int currentOddNumber = 1;
       int index = 2;
       int square = 9;
@@ -45,8 +43,9 @@ public class PrintPrimes {
       for(int primesFoundSoFar = 2; primesFoundSoFar <= numberOfPrimes; primesFoundSoFar++) {
         do {
           currentOddNumber = currentOddNumber + 2;
+          
           if (currentOddNumber == square) {
-            index= index+ 1;
+            index = index + 1;
             square = listOfPrimes[index] * listOfPrimes[index];
             multiples[index- 1] = currentOddNumber;
           }
@@ -58,29 +57,31 @@ public class PrintPrimes {
               multiples[n] = multiples[n] + listOfPrimes[n] + listOfPrimes[n];
             if (multiples[n] == currentOddNumber)
               isPrime = false;
-          
           }
+        
         } while (!isPrime);
         listOfPrimes[primesFoundSoFar] = currentOddNumber;
       }
     }
 
     public void printPrimes() {
-        int PAGENUMBER = 1;
-        int PAGEOFFSET = 1;
-        while (PAGEOFFSET <= numberOfPrimes) {
+        int pageNumber = 1;
+        int pageOffSet = 1;
+        
+        while (pageOffSet <= numberOfPrimes) {
           System.out.println("The First " + numberOfPrimes +
-                               " Prime Numbers --- Page " + PAGENUMBER);
+                               " Prime Numbers --- Page " + pageNumber);
           System.out.println("");
-          for (int ROWOFFSET = PAGEOFFSET; ROWOFFSET < PAGEOFFSET + rows; ROWOFFSET++){
-            for (int C = 0; C < columns ;C++)
-              if (ROWOFFSET + C * rows <= numberOfPrimes)
-                System.out.format("%10d", listOfPrimes[ROWOFFSET + C * rows]);
+         
+          for (int rowOffSet = pageOffSet; rowOffSet < pageOffSet + rows; rowOffSet++){
+            for (int c = 0; c < columns; c++)
+              if (rowOffSet + c * rows <= numberOfPrimes)
+                System.out.format("%10d", listOfPrimes[rowOffSet + c * rows]);
             System.out.println("");
           }
           System.out.println("\f");
-          PAGENUMBER = PAGENUMBER + 1;
-          PAGEOFFSET = PAGEOFFSET + rows * columns ;
+          pageNumber = pageNumber + 1;
+          pageOffSet = pageOffSet + rows * columns ;
         }
     }
 }
