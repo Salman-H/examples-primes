@@ -35,7 +35,7 @@ public class PrintPrimes {
 
   private void calculateOddPrimes() {
       boolean isPrime;
-      int N;
+     
       int multiples[] = new int[ORDMAX + 1];
 
       int currentOddNumber = 1;
@@ -50,14 +50,15 @@ public class PrintPrimes {
             SQUARE = listOfPrimes[index] * listOfPrimes[index];
             multiples[index- 1] = currentOddNumber;
           }
-          N = 2;
+         
           isPrime = true;
-          while (N < index&& isPrime) {
-            while (multiples[N] < currentOddNumber)
-              multiples[N] = multiples[N] + listOfPrimes[N] + listOfPrimes[N];
-            if (multiples[N] == currentOddNumber)
+         
+         for (int n = 2; n < index && isPrime; n++) {
+            while (multiples[n] < currentOddNumber)
+              multiples[n] = multiples[n] + listOfPrimes[n] + listOfPrimes[n];
+            if (multiples[n] == currentOddNumber)
               isPrime = false;
-            N = N + 1;
+          
           }
         } while (!isPrime);
         listOfPrimes[primesFoundSoFar] = currentOddNumber;
